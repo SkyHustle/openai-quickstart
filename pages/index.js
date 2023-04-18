@@ -46,6 +46,7 @@ export default function Home() {
                 <h3>Name my pet</h3>
                 <form onSubmit={onSubmit}>
                     <input
+                        required
                         type="text"
                         name="animal"
                         placeholder="Enter an animal"
