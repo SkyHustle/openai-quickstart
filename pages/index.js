@@ -34,6 +34,30 @@ export default function Home() {
         }
     }
 
+    async function listModels() {
+        try {
+            const response = await fetch("/api/listModels", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const data = await response.json();
+            if (response.status !== 200) {
+                throw (
+                    data.error ||
+                    new Error(`Request failed with status ${response.status}`)
+                );
+            }
+
+            console.log("Available Models", data.result.data);
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
+    }
+
     return (
         <div>
             <Head>
@@ -57,6 +81,7 @@ export default function Home() {
                 </form>
                 <div className={styles.result}>{result}</div>
             </main>
+            <button onClick={listModels}>List Models</button>
         </div>
     );
 }
