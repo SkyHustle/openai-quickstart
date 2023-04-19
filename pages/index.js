@@ -36,7 +36,7 @@ export default function Home() {
 
     async function listModels() {
         try {
-            const response = await fetch("/api/listModels", {
+            const response = await fetch(`/api/listModels`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,6 +52,33 @@ export default function Home() {
             }
 
             console.log("Available Models", data.result.data);
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
+    }
+
+    async function retrieveModel() {
+        try {
+            const response = await fetch(
+                `/api/retrieveModel?modelName=${"text-davinci-003"}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            const data = await response.json();
+            if (response.status !== 200) {
+                throw (
+                    data.error ||
+                    new Error(`Request failed with status ${response.status}`)
+                );
+            }
+
+            console.log("Retrieve Model ", data.result);
         } catch (error) {
             console.error(error);
             alert(error.message);
@@ -82,6 +109,7 @@ export default function Home() {
                 <div className={styles.result}>{result}</div>
             </main>
             <button onClick={listModels}>List Models</button>
+            <button onClick={retrieveModel}>Retrieve Model</button>
         </div>
     );
 }
