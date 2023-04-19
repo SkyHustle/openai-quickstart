@@ -1,7 +1,7 @@
 import { openai } from "./openai-instance";
 
 export default async function (req, res) {
-    const modelName = req.query.modelName;
+    const modelName = req.query.modelName || "text-davinci-003";
     console.log("modelName", modelName);
     try {
         const response = await openai.retrieveModel(modelName);
