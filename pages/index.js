@@ -1,6 +1,7 @@
+import styles from "./index.module.css";
 import Head from "next/head";
 import { useState } from "react";
-import styles from "./index.module.css";
+import ComboBox from "../components/ComboBox";
 
 export default function Home() {
     const [animalInput, setAnimalInput] = useState("");
@@ -122,6 +123,7 @@ export default function Home() {
             >
                 Retrieve Model
             </button>
+            <ComboBox />
         </div>
     );
 }
