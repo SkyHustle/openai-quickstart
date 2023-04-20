@@ -27,7 +27,7 @@ export default function ComboBox({ models }) {
               });
 
     return (
-        <>
+        <div className="flex justify-center">
             <Combobox
                 as="div"
                 value={selectedModel}
@@ -117,13 +117,15 @@ export default function ComboBox({ models }) {
                     )}
                 </div>
             </Combobox>
-            {selectedModel && (
-                <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                        Created on: {formatDate(selectedModel.created)}
-                    </p>
-                </div>
-            )}
-        </>
+            <div>
+                {selectedModel && (
+                    <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                            Created on: {formatDate(selectedModel.created)}
+                        </p>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 }

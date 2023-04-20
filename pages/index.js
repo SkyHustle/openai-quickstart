@@ -114,13 +114,6 @@ export default function Home() {
                 </form>
                 <div className={styles.result}>{result}</div>
             </main>
-            <button
-                onClick={retrieveModel}
-                type="button"
-                className="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
-            >
-                Retrieve Model
-            </button>
             <ComboBox models={models} />
         </div>
     );
