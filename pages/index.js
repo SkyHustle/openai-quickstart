@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import styles from "./index.module.css";
+// import styles from "./index.module.css";
 
 export default function Home() {
     const [animalInput, setAnimalInput] = useState("");
@@ -92,8 +92,8 @@ export default function Home() {
                 <link rel="icon" href="/dog.png" />
             </Head>
 
-            <main className={styles.main}>
-                <img src="/dog.png" className={styles.icon} />
+            <main className=" bg-red-300">
+                <img src="/dog.png" className="" />
                 <h3>Name my pet</h3>
                 <form onSubmit={onSubmit}>
                     <input
@@ -106,7 +106,7 @@ export default function Home() {
                     />
                     <input type="submit" value="Generate names" />
                 </form>
-                <div className={styles.result}>{result}</div>
+                <div className="">{result}</div>
             </main>
             <button onClick={listModels}>List Models</button>
             <button onClick={retrieveModel}>Retrieve Model</button>
