@@ -108,8 +108,20 @@ export default function Home() {
                 </form>
                 <div className={styles.result}>{result}</div>
             </main>
-            <button onClick={listModels}>List Models</button>
-            <button onClick={retrieveModel}>Retrieve Model</button>
+            <button
+                onClick={listModels}
+                type="button"
+                className="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+            >
+                List Models
+            </button>
+            <button
+                onClick={retrieveModel}
+                type="button"
+                className="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+            >
+                Retrieve Model
+            </button>
         </div>
     );
 }
