@@ -6,6 +6,7 @@ import ComboBox from "../components/ComboBox";
 export default function Home() {
     const [animalInput, setAnimalInput] = useState("");
     const [result, setResult] = useState();
+    const [models, setModels] = useState([]);
 
     useEffect(() => {
         fetchModels();
@@ -56,7 +57,7 @@ export default function Home() {
                 );
             }
 
-            console.log("Available Models", data.result.data);
+            setModels(data.result.data);
         } catch (error) {
             console.error(error);
             alert(error.message);
@@ -120,7 +121,7 @@ export default function Home() {
             >
                 Retrieve Model
             </button>
-            <ComboBox />
+            <ComboBox models={models} />
         </div>
     );
 }

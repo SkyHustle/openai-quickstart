@@ -2,40 +2,31 @@ import { useState } from "react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Combobox } from "@headlessui/react";
 
-const people = [
-    { id: 1, name: "Leslie Alexander", online: true },
-    { id: 2, name: "Bob Saget", online: true },
-    { id: 3, name: "Joe Blow", online: false },
-    { id: 4, name: "Bo Ho", online: false },
-];
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-export default function ComboBox() {
+export default function ComboBox({ models }) {
     const [query, setQuery] = useState("");
-    const [selectedPerson, setSelectedPerson] = useState(null);
+    const [selectedModel, setSelectedModel] = useState(null);
 
-    const filteredPeople =
+    const filteredModels =
         query === ""
-            ? people
-            : people.filter((person) => {
-                  return person.name
-                      .toLowerCase()
-                      .includes(query.toLowerCase());
+            ? models
+            : models.filter((model) => {
+                  return model.id.toLowerCase().includes(query.toLowerCase());
               });
 
     return (
-        <Combobox as="div" value={selectedPerson} onChange={setSelectedPerson}>
+        <Combobox as="div" value={selectedModel} onChange={setSelectedModel}>
             <Combobox.Label className="block text-sm font-medium leading-6 text-gray-900">
-                Assigned to
+                Select Model
             </Combobox.Label>
             <div className="relative mt-2">
                 <Combobox.Input
                     className="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     onChange={(event) => setQuery(event.target.value)}
-                    displayValue={(person) => person?.name}
+                    displayValue={(model) => model?.id}
                 />
                 <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
                     <ChevronUpDownIcon
@@ -44,12 +35,12 @@ export default function ComboBox() {
                     />
                 </Combobox.Button>
 
-                {filteredPeople.length > 0 && (
+                {filteredModels.length > 0 && (
                     <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                        {filteredPeople.map((person) => (
+                        {filteredModels.map((model) => (
                             <Combobox.Option
-                                key={person.id}
-                                value={person}
+                                key={model.id}
+                                value={model}
                                 className={({ active }) =>
                                     classNames(
                                         "relative cursor-default select-none py-2 pl-3 pr-9",
@@ -65,7 +56,7 @@ export default function ComboBox() {
                                             <span
                                                 className={classNames(
                                                     "inline-block h-2 w-2 flex-shrink-0 rounded-full",
-                                                    person.online
+                                                    model.online
                                                         ? "bg-green-400"
                                                         : "bg-gray-200"
                                                 )}
@@ -77,11 +68,11 @@ export default function ComboBox() {
                                                     selected && "font-semibold"
                                                 )}
                                             >
-                                                {person.name}
+                                                {model.id}
                                                 <span className="sr-only">
                                                     {" "}
                                                     is{" "}
-                                                    {person.online
+                                                    {model.online
                                                         ? "online"
                                                         : "offline"}
                                                 </span>
