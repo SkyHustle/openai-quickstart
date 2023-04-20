@@ -1,11 +1,15 @@
 import styles from "./index.module.css";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ComboBox from "../components/ComboBox";
 
 export default function Home() {
     const [animalInput, setAnimalInput] = useState("");
     const [result, setResult] = useState();
+
+    useEffect(() => {
+        fetchModels();
+    }, []);
 
     async function onSubmit(event) {
         event.preventDefault();
@@ -35,7 +39,7 @@ export default function Home() {
         }
     }
 
-    async function listModels() {
+    async function fetchModels() {
         try {
             const response = await fetch(`/api/listModels`, {
                 method: "GET",
@@ -109,13 +113,6 @@ export default function Home() {
                 </form>
                 <div className={styles.result}>{result}</div>
             </main>
-            <button
-                onClick={listModels}
-                type="button"
-                className="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
-            >
-                List Models
-            </button>
             <button
                 onClick={retrieveModel}
                 type="button"
